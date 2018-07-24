@@ -81,7 +81,7 @@ router.post('/login', (req, res) => {
                             id: user.id,
                             name: user.name,
                             avatar: user.avatar
-                        }
+                        };
 
                         jwt.sign(payload, keys.secret, {
                             expiresIn: 9600
@@ -99,7 +99,7 @@ router.post('/login', (req, res) => {
                     }
                 })
         })
-})
+});
 
 // @route   GET api/users/current
 // @desc    return current user
@@ -112,7 +112,7 @@ router.get('/current', passport.authenticate('jwt', {
         name: req.user.name,
         email: req.body.email
     })
-})
+});
 
 
 module.exports = router;

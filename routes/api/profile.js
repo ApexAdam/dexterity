@@ -6,6 +6,6 @@ const router = express.Router();
 // @access public
 router.get('/test', (req, res) => res.json({
     msg: 'Profile route works'
-}))
+}));
 
-module.exports = router
+module.exports = router;
