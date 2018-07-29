@@ -43,7 +43,7 @@ const ProfileSchema = new Schema({
     experience: [
         {
             title: {
-                String,
+                type: String,
                 required: true
             },
             company: {
@@ -66,7 +66,7 @@ const ProfileSchema = new Schema({
                 type: Boolean,
                 default: false
             },
-            description:{
+            description: {
                 type: String,
                 required: false
             }
@@ -76,7 +76,7 @@ const ProfileSchema = new Schema({
     education: [
         {
             school: {
-                String,
+                type: String,
                 required: true
             },
             degree: {
@@ -85,7 +85,7 @@ const ProfileSchema = new Schema({
             },
             filed: {
                 type: String,
-                required: required
+                required: true
             },
             from: {
                 type: Date,
@@ -99,7 +99,7 @@ const ProfileSchema = new Schema({
                 type: Boolean,
                 default: false
             },
-            description:{
+            description: {
                 type: String,
                 required: false
             }
@@ -109,27 +109,27 @@ const ProfileSchema = new Schema({
     social: {
 
         youtube: {
-            type:String,
+            type: String,
             required: false
         },
 
         twitter: {
-            type:String,
+            type: String,
             required: false
         },
 
         facebook: {
-            type:String,
+            type: String,
             required: false
         },
 
         linkedin: {
-            type:String,
+            type: String,
             required: false
         },
 
         instagram: {
-            type:String,
+            type: String,
             required: false
         },
     },
