@@ -16,6 +16,12 @@ class Register extends Component {
         errors: {}
     };
 
+    componentDidMount() {
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push('/');
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
@@ -54,7 +60,7 @@ class Register extends Component {
                         <div className="row">
                             <div className="col-md-8 m-auto">
                                 <h1 className="display-4 text-center">Sign Up</h1>
-                                <p className="lead text-center">Create your DevConnector account</p>
+                                <p className="lead text-center">Create your Dexterity account</p>
                                 <form onSubmit={this.onSubmit}>
                                     <div className="form-group">
                                         <input type="text" className={classnames("form-control form-control-lg", {
