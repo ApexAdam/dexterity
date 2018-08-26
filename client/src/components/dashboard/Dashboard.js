@@ -32,7 +32,7 @@ class Dashboard extends Component {
                             Welcome {user.name}
                         </p>
                         <p>You have not created a profile</p>
-                        <Link to="/create/profile" className=""> Create Profile </Link>
+                        <Link to="/create-profile" className="btn btn-lg btn-success"> Create Profile </Link>
                     </div>
                 )
             }
