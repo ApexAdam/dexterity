@@ -14,7 +14,7 @@ class Dashboard extends Component {
 
   onDelete = e => {
     this.props.deleteAccount();
-  };
+  }
 
   render() {
     const { user } = this.props.auth;

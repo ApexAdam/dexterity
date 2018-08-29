@@ -17,6 +17,7 @@ import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import { clearProfile } from "./actions/profileActions";
 import CreateProfile from "./components/create_profile/CreateProfile";
+import EditProfile from "./components/edit_profile/EditProfile";
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -47,10 +48,17 @@ class App extends Component {
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
               <Switch>
-                <CreateProfile
+                <PrivateRoute
                   exact
                   path="/create-profile"
                   component={CreateProfile}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/edit-profile"
+                  component={EditProfile}
                 />
               </Switch>
             </div>
