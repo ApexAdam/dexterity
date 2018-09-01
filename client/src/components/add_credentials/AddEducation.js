@@ -5,13 +5,13 @@ import { connect } from "react-redux";
 
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
-import { addExperience } from "../../actions/profileActions";
+import { addEducation } from "../../actions/profileActions";
 
-export class AddExperience extends Component {
+export class AddEducation extends Component {
   state = {
-    company: "",
-    title: "",
-    location: "",
+    school: "",
+    degree: "",
+    fieldOfStudy: "",
     from: "",
     to: "",
     current: false,
@@ -30,17 +30,17 @@ export class AddExperience extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const expData = {
-      company: this.state.company,
-      title: this.state.title,
-      location: this.state.location,
+    const eduData = {
+      school: this.state.school,
+      degree: this.state.degree,
+      fieldOfStudy: this.state.fieldOfStudy,
       from: this.state.from,
       to: this.state.to,
       current: this.state.current,
       description: this.state.description
     };
 
-    this.props.addExperience(expData, this.props.history);
+    this.props.addEducation(eduData, this.props.history);
   };
 
   onChange = e => {
@@ -61,39 +61,39 @@ export class AddExperience extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="add-experience">
+      <div className="add-education">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <Link to="/dashboard" className="btn btn-light">
                 Go Back
               </Link>
-              <h1 className="display-4 text-center">Add Experience</h1>
+              <h1 className="display-4 text-center">Add Education</h1>
               <p className="lead text-center">
-                Add your current/past positions
+                Add schools, bootcamps, certification that you attended
               </p>
               <small className="d-block pb-3">* = field required</small>
               <form onSubmit={this.onSubmit}>
                 <InputGroup
-                  placeholder="* Company"
-                  name="company"
-                  value={this.state.company}
+                  placeholder="* School"
+                  name="school"
+                  value={this.state.school}
                   onChange={this.onChange}
-                  error={errors.company}
+                  error={errors.school}
                 />
                 <InputGroup
-                  placeholder="* Job Title"
-                  name="title"
-                  value={this.state.title}
+                  placeholder="* Degree/Certification"
+                  name="degree"
+                  value={this.state.degree}
                   onChange={this.onChange}
-                  error={errors.title}
+                  error={errors.degree}
                 />
                 <InputGroup
-                  placeholder="Location"
-                  name="location"
-                  value={this.state.location}
+                  placeholder="* Field of Study"
+                  name="fieldOfStudy"
+                  value={this.state.fieldOfStudy}
                   onChange={this.onChange}
-                  error={errors.location}
+                  error={errors.fieldOfStudy}
                 />
                 <div className="form-check mb-4">
                   <input
@@ -106,7 +106,7 @@ export class AddExperience extends Component {
                     id="current"
                   />
                   <label htmlFor="current" className="form-check-label">
-                    Current Job
+                    Current
                   </label>
                 </div>
                 <h6>From Date</h6>
@@ -127,12 +127,12 @@ export class AddExperience extends Component {
                   disabled={this.state.disabled ? "disabled" : ""}
                 />
                 <TextAreaFieldGroup
-                  placeholder="Job Description"
+                  placeholder="Program Description"
                   name="description"
                   value={this.state.description}
                   onChange={this.onChange}
                   error={errors.description}
-                  info="Tell us about the the position"
+                  info="Tell us about the the program"
                 />
                 <input
                   type="submit"
@@ -148,10 +148,10 @@ export class AddExperience extends Component {
   }
 }
 
-AddExperience.propTypes = {
+AddEducation.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  addExperience: PropTypes.func.isRequired
+  addEducation: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -161,5 +161,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addExperience }
-)(withRouter(AddExperience));
+  { addEducation }
+)(withRouter(AddEducation));
