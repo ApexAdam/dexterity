@@ -14,7 +14,7 @@ class Dashboard extends Component {
 
   onDelete = e => {
     this.props.deleteAccount();
-  }
+  };
 
   render() {
     const { user } = this.props.auth;
@@ -71,7 +71,7 @@ class Dashboard extends Component {
   }
 }
 
-Dashboard.propTyes = {
+Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
