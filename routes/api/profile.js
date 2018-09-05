@@ -110,7 +110,9 @@ router.post(
   (req, res) => {
     const { errors, isValid } = validateProfileInput(req.body);
 
+    // Check Validation
     if (!isValid) {
+      // Return any errors with 400 status
       return res.status(400).json(errors);
     }
 
@@ -147,7 +149,9 @@ router.post(
           { new: true }
         ).then(profile => res.json(profile));
       } else {
-        //Create new
+        // Create
+
+        // Check if handle exists
         Profile.findOne({ handle: profileFields.handle }).then(profile => {
           if (profile) {
             errors.handle = "That handle already exists";
