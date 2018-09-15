@@ -10,6 +10,7 @@ import ProfileGithub from "./ProfileGithub";
 import Spinner from "../common/Spinner";
 
 import { getProfileByHandle } from "../../actions/profileActions";
+
 class Profile extends Component {
   componentDidMount() {
     if (this.props.match.params.handle) {
@@ -35,7 +36,7 @@ class Profile extends Component {
             <div className="col-md-6" />
           </div>
           <ProfileHeader profile={profile} />
-          <ProfileAbout />
+          <ProfileAbout profile={profile} />
           <ProfileCredentials />
           <ProfileGithub />
         </div>
