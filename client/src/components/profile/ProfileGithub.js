@@ -1,22 +1,73 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import keys from "../../config/keys";
 
 export class ProfileGithub extends Component {
-  static propTypes = {
-    prop: PropTypes
+  state = {
+    count: 5,
+    sort: "created: asc ",
+    repositories: []
   };
 
+  componentDidMount() {
+    const username = this.props.username;
+    const { count, sort } = this.state;
+    const { clientId, clientSecret } = keys;
+
+    fetch(
+      `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
+    )
+      .then(res => res.json())
+      .then(data => {
+        if (this.refs.myRef) {
+          this.setState({ repositories: data });
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
-    return <div>ProfileGithub</div>;
+    const { repositories } = this.state;
+
+    const repoItems = repositories.map(repo => (
+      <div key={repo.id} className="card card-body mb-2">
+        <div className="row">
+          <div className="col-md-6">
+            <h4>
+              <Link to={repo.html_url} className="text-info" target="_blank">
+                {repo.name}
+              </Link>
+            </h4>
+            <p>{repo.description}</p>
+          </div>
+          <div className="col-md-6">
+            <span className="badge badge-info mr-1">
+              Stars: {repo.stargazers_count}
+            </span>
+            <span className="badge badge-secondary mr-1">
+              Watchers: {repo.watchers_count}
+            </span>
+            <span className="badge badge-success">
+              Forks: {repo.forks_count}
+            </span>
+          </div>
+        </div>
+      </div>
+    ));
+
+    return (
+      <div ref="myRef">
+        <hr />
+        <h3 className="mb-4">Latest Github Repos</h3>
+        {repoItems}
+      </div>
+    );
   }
 }
 
-const mapStateToProps = state => ({});
+ProfileGithub.propTypes = {
+  username: PropTypes.string.isRequired
+};
 
-const mapDispatchToProps = {};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProfileGithub);
+export default ProfileGithub;
